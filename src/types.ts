@@ -30,7 +30,7 @@ export enum HandCategory {
 }
 
 // Le résultat final de l'évaluation
-export interface HandResult {
+export type HandResult = {
   category: HandCategory;
   chosen5: [Card, Card, Card, Card, Card];
-}
+};

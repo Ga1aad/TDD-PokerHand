@@ -1,4 +1,5 @@
-import { HandResult, HandCategory } from "./types";
+import type { HandResult } from "./types";
+import { HandCategory } from "./types";
 
 /**
  * Compare deux mains de poker.

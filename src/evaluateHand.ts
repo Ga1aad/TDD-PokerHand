@@ -1,9 +1,5 @@
-import {
-  type Board,
-  type HoleCards,
-  type HandResult,
-  HandCategory,
-} from "./types";
+import type { Board, HoleCards, HandResult } from "./types";
+import { HandCategory } from "./types";
 
 export function evaluateHand(board: Board, holeCards: HoleCards): HandResult {
   const allCards = [...board, ...holeCards];
@@ -60,15 +56,23 @@ export function evaluateHand(board: Board, holeCards: HoleCards): HandResult {
     // Suite normale dans la couleur
     for (let i = 0; i <= uniqueFlushCards.length - 5; i++) {
       if (uniqueFlushCards[i].rank - uniqueFlushCards[i + 4].rank === 4) {
-        return { category: HandCategory.StraightFlush, chosen5: uniqueFlushCards.slice(i, i + 5) as typeof board };
+        return {
+          category: HandCategory.StraightFlush,
+          chosen5: uniqueFlushCards.slice(i, i + 5) as typeof board,
+        };
       }
     }
     // Suite basse A-5-4-3-2 dans la couleur
     if (uniqueFlushCards.length >= 5 && uniqueFlushCards[0].rank === 14) {
       const lowStraight = [5, 4, 3, 2];
-      const lowStraightCards = uniqueFlushCards.filter(c => lowStraight.includes(c.rank));
+      const lowStraightCards = uniqueFlushCards.filter((c) =>
+        lowStraight.includes(c.rank),
+      );
       if (lowStraightCards.length === 4) {
-        return { category: HandCategory.StraightFlush, chosen5: [...lowStraightCards, uniqueFlushCards[0]] as typeof board };
+        return {
+          category: HandCategory.StraightFlush,
+          chosen5: [...lowStraightCards, uniqueFlushCards[0]] as typeof board,
+        };
       }
     }
   }
@@ -77,8 +81,11 @@ export function evaluateHand(board: Board, holeCards: HoleCards): HandResult {
   if (fours.length > 0) {
     const fourRank = fours[0];
     const fourCards = rankCounts.get(fourRank)!;
-    const kickers = allCards.filter(c => c.rank !== fourRank).slice(0, 1);
-    return { category: HandCategory.FourOfAKind, chosen5: [...fourCards, ...kickers] as typeof board };
+    const kickers = allCards.filter((c) => c.rank !== fourRank).slice(0, 1);
+    return {
+      category: HandCategory.FourOfAKind,
+      chosen5: [...fourCards, ...kickers] as typeof board,
+    };
   }
 
   // 3. Full (Full House)
@@ -87,18 +94,27 @@ export function evaluateHand(board: Board, holeCards: HoleCards): HandResult {
     const pairRank = threes[1];
     const threeCards = rankCounts.get(threeRank)!;
     const pairCards = rankCounts.get(pairRank)!.slice(0, 2);
-    return { category: HandCategory.FullHouse, chosen5: [...threeCards, ...pairCards] as typeof board };
+    return {
+      category: HandCategory.FullHouse,
+      chosen5: [...threeCards, ...pairCards] as typeof board,
+    };
   } else if (threes.length === 1 && pairs.length >= 1) {
     const threeRank = threes[0];
     const pairRank = pairs[0];
     const threeCards = rankCounts.get(threeRank)!;
     const pairCards = rankCounts.get(pairRank)!;
-    return { category: HandCategory.FullHouse, chosen5: [...threeCards, ...pairCards] as typeof board };
+    return {
+      category: HandCategory.FullHouse,
+      chosen5: [...threeCards, ...pairCards] as typeof board,
+    };
   }
 
   // 4. Couleur (Flush)
   if (flushCards) {
-    return { category: HandCategory.Flush, chosen5: flushCards.slice(0, 5) as typeof board };
+    return {
+      category: HandCategory.Flush,
+      chosen5: flushCards.slice(0, 5) as typeof board,
+    };
   }
 
   // 5. Suite (Straight)
@@ -113,14 +129,22 @@ export function evaluateHand(board: Board, holeCards: HoleCards): HandResult {
 
   for (let i = 0; i <= uniqueCards.length - 5; i++) {
     if (uniqueCards[i].rank - uniqueCards[i + 4].rank === 4) {
-      return { category: HandCategory.Straight, chosen5: uniqueCards.slice(i, i + 5) as typeof board };
+      return {
+        category: HandCategory.Straight,
+        chosen5: uniqueCards.slice(i, i + 5) as typeof board,
+      };
     }
   }
   if (uniqueCards.length >= 5 && uniqueCards[0].rank === 14) {
     const lowStraight = [5, 4, 3, 2];
-    const lowStraightCards = uniqueCards.filter(c => lowStraight.includes(c.rank));
+    const lowStraightCards = uniqueCards.filter((c) =>
+      lowStraight.includes(c.rank),
+    );
     if (lowStraightCards.length === 4) {
-      return { category: HandCategory.Straight, chosen5: [...lowStraightCards, uniqueCards[0]] as typeof board };
+      return {
+        category: HandCategory.Straight,
+        chosen5: [...lowStraightCards, uniqueCards[0]] as typeof board,
+      };
     }
   }
 
@@ -128,8 +152,11 @@ export function evaluateHand(board: Board, holeCards: HoleCards): HandResult {
   if (threes.length > 0) {
     const threeRank = threes[0];
     const threeCards = rankCounts.get(threeRank)!;
-    const kickers = allCards.filter(c => c.rank !== threeRank).slice(0, 2);
-    return { category: HandCategory.ThreeOfAKind, chosen5: [...threeCards, ...kickers] as typeof board };
+    const kickers = allCards.filter((c) => c.rank !== threeRank).slice(0, 2);
+    return {
+      category: HandCategory.ThreeOfAKind,
+      chosen5: [...threeCards, ...kickers] as typeof board,
+    };
   }
 
   // 7. Double Paire (Two Pair)
@@ -138,18 +165,29 @@ export function evaluateHand(board: Board, holeCards: HoleCards): HandResult {
     const lowPairRank = pairs[1];
     const highPairCards = rankCounts.get(highPairRank)!;
     const lowPairCards = rankCounts.get(lowPairRank)!;
-    const kickers = allCards.filter(c => c.rank !== highPairRank && c.rank !== lowPairRank).slice(0, 1);
-    return { category: HandCategory.TwoPair, chosen5: [...highPairCards, ...lowPairCards, ...kickers] as typeof board };
+    const kickers = allCards
+      .filter((c) => c.rank !== highPairRank && c.rank !== lowPairRank)
+      .slice(0, 1);
+    return {
+      category: HandCategory.TwoPair,
+      chosen5: [...highPairCards, ...lowPairCards, ...kickers] as typeof board,
+    };
   }
 
   // 8. Paire (One Pair)
   if (pairs.length === 1) {
     const pairRank = pairs[0];
     const pairCards = rankCounts.get(pairRank)!;
-    const kickers = allCards.filter(c => c.rank !== pairRank).slice(0, 3);
-    return { category: HandCategory.OnePair, chosen5: [...pairCards, ...kickers] as typeof board };
+    const kickers = allCards.filter((c) => c.rank !== pairRank).slice(0, 3);
+    return {
+      category: HandCategory.OnePair,
+      chosen5: [...pairCards, ...kickers] as typeof board,
+    };
   }
 
   // 9. Carte Haute (High Card)
-  return { category: HandCategory.HighCard, chosen5: allCards.slice(0, 5) as typeof board };
+  return {
+    category: HandCategory.HighCard,
+    chosen5: allCards.slice(0, 5) as typeof board,
+  };
 }
