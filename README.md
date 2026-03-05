@@ -4,6 +4,14 @@ Ce projet est un projet académique réalisé dans le cadre du cours de **Test D
 
 Projet réalisé par **Galaad Filâtre** et **Clément Suire**.
 
+```bash
+# Installation des dépendances
+npm install
+
+# Lancement de l'app
+npm run dev
+```
+
 ## Objectif du Projet
 
 L'objectif est de mettre en place un moteur d'évaluation et de comparaison de mains de Poker Texas Hold'em en suivant rigoureusement la méthodologie **TDD**.
