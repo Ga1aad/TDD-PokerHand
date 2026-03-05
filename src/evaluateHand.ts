@@ -29,6 +29,41 @@ export function evaluateHand(board: Board, holeCards: HoleCards): HandResult {
   // Trier les paires par ordre décroissant pour avoir les plus fortes en premier
   pairs.sort((a, b) => b - a);
 
+  // Extraire les cartes uniques par rang pour vérifier la suite (Straight)
+  const uniqueCards: typeof allCards = [];
+  const seenRanks = new Set<number>();
+  for (const card of allCards) {
+    if (!seenRanks.has(card.rank)) {
+      seenRanks.add(card.rank);
+      uniqueCards.push(card);
+    }
+  }
+
+  // Chercher une suite (Straight)
+  for (let i = 0; i <= uniqueCards.length - 5; i++) {
+    if (uniqueCards[i].rank - uniqueCards[i + 4].rank === 4) {
+      const chosen5 = uniqueCards.slice(i, i + 5) as typeof board;
+      return {
+        category: HandCategory.Straight,
+        chosen5
+      };
+    }
+  }
+
+  // Cas spécial : Suite A-5-4-3-2 (As comme valeur la plus basse = 1)
+  if (uniqueCards.length >= 5 && uniqueCards[0].rank === 14) {
+    const lowStraight = [5, 4, 3, 2];
+    const lowStraightCards = uniqueCards.filter(c => lowStraight.includes(c.rank));
+    if (lowStraightCards.length === 4) {
+      // L'ordre doit être 5, 4, 3, 2, A
+      const chosen5 = [...lowStraightCards, uniqueCards[0]] as typeof board;
+      return {
+        category: HandCategory.Straight,
+        chosen5
+      };
+    }
+  }
+
   // Chercher un brelan (Three of a Kind)
   for (const [rank, cards] of rankCounts.entries()) {
     if (cards.length === 3) {
