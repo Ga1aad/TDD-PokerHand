@@ -29,6 +29,20 @@ export function evaluateHand(board: Board, holeCards: HoleCards): HandResult {
   // Trier les paires par ordre décroissant pour avoir les plus fortes en premier
   pairs.sort((a, b) => b - a);
 
+  // Chercher un brelan (Three of a Kind)
+  for (const [rank, cards] of rankCounts.entries()) {
+    if (cards.length === 3) {
+      const threeOfAKindCards = cards;
+      const kickers = allCards.filter(c => c.rank !== rank).slice(0, 2);
+
+      const chosen5 = [...threeOfAKindCards, ...kickers] as typeof board;
+      return {
+        category: HandCategory.ThreeOfAKind,
+        chosen5
+      };
+    }
+  }
+
   if (pairs.length >= 2) {
     const highPairRank = pairs[0];
     const lowPairRank = pairs[1];
