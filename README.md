@@ -66,4 +66,4 @@ npm install
 npm run test
 ```
 
-Le projet contient actuellement **17 fichiers de tests** couvrant **28 cas d'usages** et de départages spécifiques.
+Le projet contient actuellement **18 fichiers de tests** couvrant **28 cas d'usages** et de départages spécifiques.
