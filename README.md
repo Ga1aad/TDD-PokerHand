@@ -7,6 +7,7 @@ Projet réalisé par **Galaad Filâtre** et **Clément Suire**.
 ## Objectif du Projet
 
 L'objectif est de mettre en place un moteur d'évaluation et de comparaison de mains de Poker Texas Hold'em en suivant rigoureusement la méthodologie **TDD**.
+Vous pouvez retrouver les détails de l'énoncé ici : [Énoncé](./docs/tdd-exam-grp2-2026.pdf)
 
 ## Stack Technique
 
