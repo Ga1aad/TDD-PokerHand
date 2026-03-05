@@ -64,6 +64,9 @@ npm install
 
 # Lancement des tests (Vitest)
 npm run test
+
+# Lancement des tests avec UI (Vitest)
+npm run test:ui
 ```
 
 Le projet contient actuellement **18 fichiers de tests** couvrant **28 cas d'usages** et de départages spécifiques.
