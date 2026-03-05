@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { compareHands } from "../compareHands";
-import { HandCategory } from "../types";
+import { compareHands } from "../../compareHands";
+import { HandCategory } from "../../types";
 
 describe("compareHands - Flush Tie-Break", () => {
     it("devrait départager deux Flush en descendant carte par carte", () => {

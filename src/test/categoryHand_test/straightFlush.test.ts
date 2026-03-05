@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { evaluateHand } from "../evaluateHand";
-import { HandCategory, type Board, type HoleCards } from "../types";
+import { evaluateHand } from "../../evaluateHand";
+import { HandCategory, Board, HoleCards } from "../../types";
 
 describe("evaluateHand - Straight Flush", () => {
   it("devrait détecter une quinte flush et renvoyer les cartes triées par rang", () => {

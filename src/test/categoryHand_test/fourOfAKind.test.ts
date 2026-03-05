@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { evaluateHand } from "../evaluateHand";
-import { HandCategory, type Board, type HoleCards } from "../types";
+import { evaluateHand } from "../../evaluateHand";
+import { HandCategory, Board, HoleCards } from "../../types";
 
 describe("evaluateHand - Four Of A Kind", () => {
   it("devrait détecter un carré (Four Of A Kind) et renvoyer les 4 cartes puis le meilleur kicker", () => {

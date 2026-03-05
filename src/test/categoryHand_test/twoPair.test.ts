@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { evaluateHand } from "../evaluateHand";
-import { HandCategory, Board, HoleCards } from "../types";
+import { evaluateHand } from "../../evaluateHand";
+import { HandCategory, Board, HoleCards } from "../../types";
 
 describe("evaluateHand - Two Pair", () => {
   it("devrait détecter une double paire (TwoPair) et renvoyer les 5 meilleures cartes correctement triées", () => {

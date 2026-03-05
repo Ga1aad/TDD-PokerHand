@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { evaluateHand } from "../evaluateHand";
-import { HandCategory, Board, HoleCards } from "../types";
+import { evaluateHand } from "../../evaluateHand";
+import { HandCategory, Board, HoleCards } from "../../types";
 
 describe("evaluateHand - Straight", () => {
   it("devrait détecter une suite (Straight) et renvoyer les 5 cartes de la suite correctement triées", () => {

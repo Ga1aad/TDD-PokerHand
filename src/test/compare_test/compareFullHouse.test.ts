@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { compareHands } from "../compareHands";
-import { HandCategory } from "../types";
+import { compareHands } from "../../compareHands";
+import { HandCategory } from "../../types";
 
 describe("compareHands - Full House Tie-Break", () => {
     it("devrait départager sur la valeur du brelan du Full", () => {

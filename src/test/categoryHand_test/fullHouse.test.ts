@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { evaluateHand } from "../evaluateHand";
-import { HandCategory, type Board, type HoleCards } from "../types";
+import { evaluateHand } from "../../evaluateHand";
+import { HandCategory, Board, HoleCards } from "../../types";
 
 describe("evaluateHand - Full House", () => {
   it("devrait détecter un full (Full House) et renvoyer le brelan puis la paire", () => {

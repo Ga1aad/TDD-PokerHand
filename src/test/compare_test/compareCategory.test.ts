@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { compareHands } from "../compareHands";
-import { HandCategory } from "../types";
+import { compareHands } from "../../compareHands";
+import { HandCategory } from "../../types";
 
 describe("compareHands - Catégories différentes", () => {
     it("devrait désigner la main avec la catégorie la plus forte comme gagnante (ex: Pair bat HighCard)", () => {
